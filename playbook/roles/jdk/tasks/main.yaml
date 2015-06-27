@@ -1,0 +1,19 @@
+---
+- name: ensure target dir
+  file: path={{dest_dir}}  state=directory
+
+- name: copy and unzip
+  unarchive: src={{src_file}} dest={{dest_dir}}
+
+- name: clear old env
+  lineinfile: dest=/etc/profile regexp='JAVA_HOME' state=absent
+
+- name: set env
+  lineinfile:
+    dest=/etc/profile
+    insertafter="{{item.position}}"
+    line="{{item.value}}"
+    state=present
+  with_items:
+  - {position: EOF, value: "export JAVA_HOME={{dest_dir}}/jdk"}
+  - {position: EOF, value: 'export PATH=$JAVA_HOME/bin:$PATH'}

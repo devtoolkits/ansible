@@ -1,0 +1,6 @@
+---
+tags: resin
+
+src_file: 'resin.tar.gz'
+config_file: 'resin.xml.example'
+dest_dir: /opt/soft/

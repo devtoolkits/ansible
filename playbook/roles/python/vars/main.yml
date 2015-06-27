@@ -1,0 +1,4 @@
+---
+tags: python
+
+gather_facts: yes

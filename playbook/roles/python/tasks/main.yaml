@@ -1,0 +1,8 @@
+---
+- name: centos 5
+  yum: name=python26 disablerepo=* enablerepo=epel state=present
+  when: ansible_pkg_mgr == "yum" and ansible_distribution_version.split('.')[0]|int == 5
+
+- name: centos 6
+  yum: name=python-2.6* state=present
+  when: ansible_pkg_mgr == "yum" and ansible_distribution_version.split('.')[0]|int == 6

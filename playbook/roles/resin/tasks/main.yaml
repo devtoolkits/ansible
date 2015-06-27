@@ -1,0 +1,15 @@
+---
+- name: ensure target dir 
+  file: path={{dest_dir}} state=directory
+
+- name: copy and unzip
+  unarchive: src={{src_file}} dest={{dest_dir}} 
+
+- name: test resin.xml exist or not
+  stat: path={{dest_dir}}/resin/conf/resin.xml
+  register: file_exist
+
+- name: copy resin.xml.example to resin.xml if resin.xml not exist
+  copy: src={{config_file}} dest={{dest_dir}}/resin/conf/resin.xml
+  when: not file_exist.stat.exists
+      

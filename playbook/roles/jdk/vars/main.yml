@@ -1,0 +1,6 @@
+---
+tags: jdk
+
+src_file: 'jdk1.6-centos6.tar.gz'
+dest_dir: /opt/soft
+
